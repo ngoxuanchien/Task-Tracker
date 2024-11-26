@@ -1,4 +1,7 @@
-package nxc.hcmus;
+package nxc.hcmus.model.entity;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import nxc.hcmus.model.enums.TaskStatus;
 
 import java.time.LocalDateTime;
 
@@ -6,15 +9,27 @@ public class Task {
 
     private static Long availableId = 0L;
 
+    private static class SingletonHelper {
+        private static final Task INSTANCE = new Task();
+    }
+
     public static Long setAvailableId(Long availableId) {
         Task.availableId = availableId;
+        return availableId;
+    }
+
+    public static Long getAvailableId() {
         return availableId;
     }
 
     private Long id;
     private String description;
     private TaskStatus status;
+
+    @JsonProperty("created_at")
     private LocalDateTime createdAt;
+
+    @JsonProperty("updated_at")
     private LocalDateTime updatedAt;
 
     public void setId(Long id) {
@@ -60,12 +75,15 @@ public class Task {
     public Task(String description) {
         this.id = availableId++;
         this.description = description;
-        this.createdAt = LocalDateTime.now();
         this.status = TaskStatus.TODO;
     }
 
     public Task() {
 
+    }
+
+    public void printTask() {
+        System.out.println(id + ": " + description + " - " + status);
     }
 
 }

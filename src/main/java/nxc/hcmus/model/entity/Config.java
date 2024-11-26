@@ -1,22 +1,24 @@
 package nxc.hcmus.model.entity;
 
-public class AvailableId {
-    private Long id;
-    private String type;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-    public Long getId() {
-        return id;
+public class Config {
+    @JsonProperty("available_id")
+    private Long availableId;
+
+    public Long getAvailableId() {
+        return availableId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setAvailableId(Long availableId) {
+        this.availableId = availableId;
     }
 
-    public String getType() {
-        return type;
+    public Config(Long availableId) {
+        this.availableId = availableId;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public Config() {
+
     }
 }

@@ -1,4 +1,4 @@
-package nxc.hcmus;
+package nxc.hcmus.model.enums;
 
 public enum TaskStatus {
     TODO,
